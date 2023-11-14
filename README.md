@@ -1,4 +1,4 @@
-# myAPIproject
+# My First API Project
 An API based university project
 The APIs of my choice for this project are lrtAPI and freeDictionaryAPI both of which are open-source. Because of that there are no authorisation needed to access either of them. 
 When thinking of my application I thought about what I use on a daily basis. Every morning the first thing I do is turn on LRT Radio on whatever device I am using and usualy I use Google as a dictionary whenever I am writing documents. In the application there will be four buttons used to switch between the different stations (Radijas, Klasika, Opus, Lituanica). For the input field there will be a possibility to type in a work and get an explanation of the word, aswell as the synonyms, antonyms of words, which is something that I use quite often to expand my vocabulary while writing documents. 
