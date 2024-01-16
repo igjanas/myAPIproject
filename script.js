@@ -17,10 +17,9 @@
                 { label: "LRT Radijas", url: "https://lrt-api.eu-gb.mybluemix.net/live/lr", color: "blue" },
                 { label: "LRT Opus", url: "https://lrt-api.eu-gb.mybluemix.net/live/opus", color: "orange" },
                 { label: "LRT Klasika", url: "https://lrt-api.eu-gb.mybluemix.net/live/klasika", color: "maroon" },
-                { label: "LRT Lituanica", url: "https://lrt-api.eu-gb.mybluemix.net/live/world", color: "green" }
+                { label: "LRT Lituanica", url: "https://lrt-api.eu-gb.mybluemix.net/live/world", color: "green" },
+                { label: "Settings", url: "myapiproject/settings.html"}
             ];
-    // Unfortunately the LRT API does not work as it is showing me a CORS error, I have tried running it through https://cors-anywhere.herokuapp.com/
-    // But after some research it seems that it is available anymore, and I would have to create my own proxy to get information from the API.
 
             function handleButtonClick(buttonInfo, buttonElement) {
                 makeGetRequest(buttonInfo.url);
@@ -45,6 +44,8 @@
                 buttonContainer.appendChild(button);
             });
         }
+
+        //Dictionary API implementation
 
         createButtons();
 
