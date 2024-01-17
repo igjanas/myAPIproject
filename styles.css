@@ -5,62 +5,25 @@ body {
     box-sizing: border-box;
 }
 
-.button-container {
-    background-color: #f1f1f1;
-    padding: 15px;
+.button-container{
+    margin-left: 100px;
     text-align: center;
 }
 
-.top-button {
-    background-color: #d3d3d3; /* Default gray color */
-    color: black; /* Default text color */
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.weather-container {
+    margin-left: 100px;
 }
 
-.top-button.selected {
-    /* Style for the selected button */
-    background-color: #3498db; /* Blue color for LRT Radijas */
-    color: white;
-}
-
-/* Active state styles for each button */
-.top-button:active {
-    transform: translateY(2px);
-}
-
-/* Specific colors for each button when pressed */
-.top-button.blue:active {
-    background-color: #3498db;
-    color: white;
-}
-
-.top-button.orange:active {
-    background-color: #e67e22;
-    color: white;
-}
-
-.top-button.maroon:active {
-    background-color: #800000;
-    color: white;
-}
-
-.top-button.green:active {
-    background-color: #4CAF50;
-    color: white;
-}
 
 .form-container {
-    text-align: center;
+    text-align: right;
     margin-top: 20px;
+    margin-right: 100px;
 }
 
 input {
     padding: 10px;
-    width: 60%;
+    width: 35%;
     box-sizing: border-box;
 }
 

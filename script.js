@@ -1,53 +1,115 @@
+// Weather API Implementation
+const key = 'd1c32f85bfc6476395f85711241701';
+const apiUrl = 'http://api.weatherapi.com/v1/current.json';
+var locationName;
+const includeAqi = 'yes';
 
-        function makeGetRequest(url) {
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    console.log("GET request successful:", data);
-                })
-                .catch(error => {
-                    console.error("Error making GET request:", error);
-                });
-        }
-        function createButtons() {
-            var buttonContainer = document.getElementById("buttonContainer");
-            var activeButton = null;
+const requestUrl = `${apiUrl}?key=${key}&q=${locationName}&aqi=${includeAqi}`;
 
-            var buttonData = [
-                { label: "LRT Radijas", url: "https://lrt-api.eu-gb.mybluemix.net/live/lr", color: "blue" },
-                { label: "LRT Opus", url: "https://lrt-api.eu-gb.mybluemix.net/live/opus", color: "orange" },
-                { label: "LRT Klasika", url: "https://lrt-api.eu-gb.mybluemix.net/live/klasika", color: "maroon" },
-                { label: "LRT Lituanica", url: "https://lrt-api.eu-gb.mybluemix.net/live/world", color: "green" },
-                { label: "Settings", url: "myapiproject/settings.html"}
-            ];
+fetch(requestUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+    displayWeather(data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 
-            function handleButtonClick(buttonInfo, buttonElement) {
-                makeGetRequest(buttonInfo.url);
+// Create a container for buttons dynamically
+var buttonContainer = document.createElement("div");
+buttonContainer.id = "jsButtonContainer";
+document.body.appendChild(buttonContainer);
 
-                buttonContainer.querySelectorAll('.top-button').forEach(function(button) {
-                    button.classList.remove('selected');
-                });
+// Create a container for weather information
+var weatherContainer = document.createElement("div");
+weatherContainer.id = "weatherContainer";
+document.body.appendChild(weatherContainer);
 
-                buttonElement.classList.add("selected");
-                activeButton = buttonElement;
+// Function to change location
+function changeLocation(newLocation) {
+    // Change locationName to the new location
+    locationName = newLocation;
+
+    // Refresh the weather fetch with the new locationName
+    const requestUrl = `${apiUrl}?key=${key}&q=${locationName}&aqi=${includeAqi}`;
+
+    fetch(requestUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
+            return response.json();
+        })
+        .then(data => {
+            // Handle the response data here
+            console.log(data);
+            displayWeather(data); // Update the displayed weather information
+        })
+        .catch(error => {
+            // Handle errors here
+            console.error('Error:', error);
+        });
+}
 
-            buttonData.forEach(function(buttonInfo) {
-                var button = document.createElement("button");
-                button.className = "top-button " + buttonInfo.color;
-                button.textContent = buttonInfo.label;
+// Array of cities
+var cities = ['Enschede', 'Arnhem', 'Pribitka', 'Panevėžys'];
 
-                button.addEventListener("click", function() {
-                    handleButtonClick(buttonInfo, button);
-                });
+// Create buttons dynamically for each city
+for (var i = 0; i < cities.length; i++) {
+    var cityButton = document.createElement("button");
+    cityButton.innerHTML = `${cities[i]}`;
+    cityButton.onclick = function(city) {
+        return function() {
+            changeLocation(city);
+        };
+    }(cities[i]);
 
-                buttonContainer.appendChild(button);
-            });
-        }
+    // Append each button to the button container
+    buttonContainer.appendChild(cityButton);
+}
 
+function displayWeather(data) {
+  // Clear existing content in weatherContainer
+  weatherContainer.innerHTML = "";
+
+  // Create HTML elements to display the weather information
+  var cityName = document.createElement("h1");
+  cityName.textContent = `${data.location.name}, ${data.location.region}, ${data.location.country}`;
+
+  var temperature = document.createElement("h2");
+  temperature.textContent = `Temperature: ${data.current.temp_c} °C`;
+
+  var feelsLike = document.createElement("p");
+  feelsLike.textContent = `Feels Like: ${data.current.feelslike_c} °C`;
+
+  var humidity = document.createElement("p");
+  humidity.textContent = `Humidity: ${data.current.humidity}%`;
+
+  var windInfo = document.createElement("p");
+  windInfo.textContent = `Wind: ${data.current.wind_kph} km/h, ${data.current.wind_degree}°`;
+
+  var condition = document.createElement("p");
+  condition.innerHTML = `Condition: ${data.current.condition.text} <img src="${data.current.condition.icon}" alt="Weather Icon">`;
+
+  // Append the elements to the container
+  weatherContainer.appendChild(cityName);
+  weatherContainer.appendChild(temperature);
+  weatherContainer.appendChild(feelsLike);
+  weatherContainer.appendChild(humidity);
+  weatherContainer.appendChild(windInfo);
+  weatherContainer.appendChild(condition);
+}
+  
+
+
+        
         //Dictionary API implementation
-
-        createButtons();
 
         function wordRequest() {
             var inputField = document.getElementById("inputField");
