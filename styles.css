@@ -1,42 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Pathway+Extreme:wght@200;600&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    background: rgb(24, 22, 1);
+    
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Pathway Extreme', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 35px;
     box-sizing: border-box;
 }
-
-.button-container{
-    margin-left: 100px;
-    text-align: center;
+    input{
+        color: black;
+        font-size: 15px;
+        background-color: bisque;
+    width: 350px;
+    height: 40px;
+    border-radius: 12px;
+    border-style: none;
+}
+    button{
+        margin: 15px;
+    background-color: rgb(203, 218, 213);
+    font-size: 20px;
+    color: rgb(34, 34, 34);
+    border-radius: 15px;
+    border-style: none;
+    height: 40px;
+}
+    h1{
+    color:aliceblue;
+}
+    h2{
+    color: aliceblue;
+}
+    p{
+    color: aliceblue;
 }
 
-.weather-container {
-    margin-left: 100px;
-}
-
-
-.form-container {
+.form-container{
     text-align: right;
-    margin-top: 20px;
-    margin-right: 100px;
-}
-
-input {
-    padding: 10px;
-    width: 35%;
-    box-sizing: border-box;
-}
-
-button.submit-button {
-    background-color: white;
-    color: black;
-    padding: 10px 20px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button.submit-button:hover {
-    background-color: #f1f1f1;
+    float: right;
 }

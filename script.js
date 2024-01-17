@@ -1,3 +1,7 @@
+//jQuery Implementation
+var script = document.createElement('script');
+script.src = 'https://code.jquery.com/jquery-3.7.1.min.js'; // Check https://jquery.com/ for the current version
+document.getElementsByTagName('head')[0].appendChild(script);
 // Weather API Implementation
 const key = 'd1c32f85bfc6476395f85711241701';
 const apiUrl = 'http://api.weatherapi.com/v1/current.json';
@@ -27,7 +31,7 @@ buttonContainer.id = "jsButtonContainer";
 document.body.appendChild(buttonContainer);
 
 // Create a container for weather information
-var weatherContainer = document.createElement("div");
+var weatherContainer = document.createElement("div2");
 weatherContainer.id = "weatherContainer";
 document.body.appendChild(weatherContainer);
 
@@ -70,6 +74,9 @@ for (var i = 0; i < cities.length; i++) {
         };
     }(cities[i]);
 
+    //Add the buttons in an array
+    
+
     // Append each button to the button container
     buttonContainer.appendChild(cityButton);
 }
@@ -104,11 +111,7 @@ function displayWeather(data) {
   weatherContainer.appendChild(humidity);
   weatherContainer.appendChild(windInfo);
   weatherContainer.appendChild(condition);
-}
-  
-
-
-        
+}        
         //Dictionary API implementation
 
         function wordRequest() {
@@ -138,8 +141,6 @@ function displayWeather(data) {
                 apiResultsContainer.innerHTML = "<p>Please enter a word in the search bar.</p>";
             }
         }
-
-        // Add this event listener to the input field
         var inputField = document.getElementById("inputField");
         inputField.addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
